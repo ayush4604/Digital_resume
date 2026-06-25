@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "https://ayush4604-digital-resume.hf.space",
+      "permanent": false
+    }
+  ]
+}
