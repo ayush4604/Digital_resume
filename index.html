@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayush Kumar | Digital Resume</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- Canvas for interactive background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Global Cursor glow -->
+    <div class="cursor-glow"></div>
+
+    <main class="container">
+      
+      <!-- Hero Section -->
+      <section class="hero bento-item glass-panel fade-in">
+        <div class="hero-content-wrapper">
+          <div class="hero-text">
+            <h1 class="title">Hello, I'm <br><span class="gradient-text" id="dynamic-name">Loading...</span></h1>
+            <h2 class="subtitle" id="dynamic-subtitle">I specialize in&nbsp;<span class="typing-text"></span><span class="cursor">|</span></h2>
+            <p class="bio" id="dynamic-bio">Loading bio...</p>
+            
+            <div class="hero-actions">
+              <a href="#" id="dynamic-email" class="btn primary magnetic">Email Me</a>
+              <a href="#contact" class="btn secondary magnetic">Contact Info</a>
+              <button id="open-vault-btn" class="btn secondary magnetic" style="font-family: inherit; font-size: 1rem; cursor: pointer;">Documents</button>
+            </div>
+          </div>
+          <div class="hero-image-container">
+            <img src="/profile.png" id="dynamic-profile-pic" alt="Profile" class="profile-photo magnetic">
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento Grid Layout -->
+      <div class="bento-grid">
+        
+        <!-- Experience / Timeline -->
+        <section class="experience bento-item glass-panel tilt-card fade-in" style="--delay: 0.1s">
+          <h3 class="section-title">Journey</h3>
+          <div class="timeline" id="dynamic-journey">
+            <!-- Journey will be dynamically injected here -->
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects bento-item glass-panel tilt-card fade-in" style="--delay: 0.2s">
+          <h3 class="section-title">Flagship Projects</h3>
+          <div class="project-list" id="dynamic-projects-container">
+            <!-- Projects will be dynamically injected here from data.json -->
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills bento-item glass-panel tilt-card fade-in" style="--delay: 0.3s">
+          <h3 class="section-title">Core Skills</h3>
+          <div class="skills-cloud" id="dynamic-skills">
+            <!-- Skills injected here -->
+          </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements bento-item glass-panel tilt-card fade-in" style="--delay: 0.4s">
+          <h3 class="section-title">Achievements</h3>
+          <ul class="achievement-list" id="dynamic-achievements">
+            <!-- Achievements injected here -->
+          </ul>
+        </section>
+
+        <!-- Workshops Section -->
+        <section class="workshops bento-item glass-panel tilt-card fade-in" style="--delay: 0.5s">
+          <h3 class="section-title">Certifications & Extras</h3>
+          <ul class="achievement-list" id="dynamic-certifications">
+            <!-- Certs injected here -->
+          </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact bento-item glass-panel tilt-card fade-in" style="--delay: 0.7s">
+           <h3 class="section-title">Let's Connect</h3>
+           <p>Seeking a dynamic Data Science internship to drive impactful innovation.</p>
+           <div class="social-links" id="dynamic-socials">
+             <!-- Social links injected here -->
+           </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Project Modals -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div id="dynamic-modals-container">
+      <!-- Modals will be dynamically injected here from data.json -->
+    </div>
+
+    <!-- Secure Vault Modal (File Browser) -->
+    <div class="modal glass-panel" id="modal-vault" style="max-width: 600px;">
+      <button class="modal-close magnetic">&times;</button>
+      <div class="modal-content" style="padding: 2rem;">
+        <h2 class="title" style="font-size: 2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 2.5rem;">🛡️</span> Secure Vault
+        </h2>
+        <p style="margin-bottom: 2rem; color: var(--text-secondary);">Select a document to unlock and view or download.</p>
+
+        <div id="vault-file-list" class="vault-list" style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+          
+          <!-- Document Items generated dynamically by JS or hardcoded -->
+          <!-- Document Items generated dynamically by JS from data.json -->
+        </div>
+
+        <!-- Certificates Sub-Menu (Hidden by default) -->
+        <div id="vault-cert-list" class="vault-list" style="display: none; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; transition: color 0.2s;" id="back-to-vault-main" onmouseover="this.style.color='var(--accent-1)'" onmouseout="this.style.color='var(--text-primary)'">
+            <span style="font-size: 1.5rem;">⬅️</span> <h3 style="margin: 0; font-size: 1.2rem;">Back to Vault</h3>
+          </div>
+          <!-- Certificate Items generated dynamically by JS from data.json -->
+        </div>
+
+        <!-- B.Tech Sub-Menu (Hidden by default) -->
+        <div id="vault-btech-list" class="vault-list" style="display: none; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; transition: color 0.2s;" id="back-to-vault-main-btech" onmouseover="this.style.color='var(--accent-1)'" onmouseout="this.style.color='var(--text-primary)'">
+            <span style="font-size: 1.5rem;">⬅️</span> <h3 style="margin: 0; font-size: 1.2rem;">Back to Vault</h3>
+          </div>
+          <!-- B.Tech Items generated dynamically by JS from data.json -->
+        </div>
+
+        <!-- PIN Pad View (Hidden by default) -->
+        <div id="vault-pin-view" style="display: none; text-align: center; margin-top: 1rem;">
+          <h3 id="vault-pin-title" style="margin-bottom: 0.5rem; font-size: 1.5rem;">Unlock Document</h3>
+          <p id="vault-pin-desc" style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 0.9rem;">Enter PIN.</p>
+          <div class="pin-container">
+            <input type="password" id="vault-pin" maxlength="6" placeholder="••••" style="width: 100%; padding: 15px; font-size: 1.5rem; text-align: center; background: rgba(0,0,0,0.3); border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-primary); outline: none; letter-spacing: 10px; margin-bottom: 15px;">
+            <div style="display: flex; gap: 10px;">
+              <button id="vault-back-btn" class="social-btn magnetic" style="flex: 1; border: none; font-size: 1rem; cursor: pointer; background: rgba(255,255,255,0.05);">Cancel</button>
+              <button id="vault-submit" class="social-btn magnetic" style="flex: 2; border: none; font-size: 1rem; cursor: pointer; background: var(--accent-1); color: #000;">Unlock</button>
+            </div>
+          </div>
+          <div id="vault-status" style="margin-top: 15px; font-size: 0.9rem; min-height: 20px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
